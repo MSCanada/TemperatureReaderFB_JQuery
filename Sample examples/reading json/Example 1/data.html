@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>JSON Sample</title>
+</head>
+<body>
+    <div id="placeholder"></div>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+  $.getJSON('data.json', function(data) {
+       var txt="";
+       var i; 
+        for(i=0;i<=1;i++)
+        {
+        	txt=txt+data.users[i].firstName+" "+ data.users[i].lastName+ "<br>";
+        }
+
+        
+        document.getElementById("header").innerHTML=txt;
+  });
+    </script>
+
+
+    <p id="header"></p>
+</body>
+</html>

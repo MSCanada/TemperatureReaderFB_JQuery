@@ -1,0 +1,57 @@
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>JSON Sample</title>
+</head>
+<body>
+    <div id="placeholder"></div>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+  $(document).ready(function()
+{
+  $.ajax({
+    type: "GET",
+    url: "data.json",
+    dataType: "json",
+    success: parseXml
+  });
+});
+
+function parseXml(data)
+{
+$(data.users).each(function(index,value){
+
+console.log(value);
+console.log(value.firstName);
+
+
+
+})
+
+
+}
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+    </script>
+
+
+    <p id="output"></p>
+</body>
+</html>
+
+

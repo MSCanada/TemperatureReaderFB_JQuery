@@ -1,0 +1,45 @@
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>JSON Sample</title>
+</head>
+<body>
+    <div id="placeholder"></div>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+  $(document).ready(function()
+{
+  $.ajax({
+    type: "GET",
+    url: "data.xml",
+    dataType: "xml",
+    success: parseXml
+  });
+});
+
+function parseXml(data)
+{
+$(data).find("Tutorial").each(function(){
+  $(this).find("Category").each(function(){
+
+   $("#output").append($(this).text()+"<br>");
+
+
+
+  });
+
+   });
+
+}
+
+
+    </script>
+
+
+    <p id="output"></p>
+</body>
+</html>
+
+

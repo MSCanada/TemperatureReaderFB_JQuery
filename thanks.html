@@ -1,0 +1,92 @@
+
+<html lang="en">
+<head>
+  <style>
+h1{
+
+text-align:center;
+}
+
+
+  </style>
+    <meta charset="utf-8" />
+    <title>Facebook App</title>
+</head>
+<body>
+ <h1> Welcome to my Facebook App </h1>
+
+
+
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+ var x,post_fb;
+ 
+ $(document).ready(function()
+{
+  $.ajax({
+    type: "GET",
+    url: "http://api.openweathermap.org/data/2.5/weather?q=Toronto&mode=xml",
+    dataType: "xml",
+    success: parseXml
+  });
+});
+
+function parseXml(data)
+{
+$(data).find("current").each(function(){
+  $(this).find("temperature").each(function(){
+
+    x=($(this).attr("value"));
+ post_fb=("The temperature at your locaton is "+(x-272.15)+" Celcius");
+document.getElementById("header").innerHTML=x+" in Kelvin";
+  });
+
+   });
+
+}
+ 
+
+
+
+  window.fbAsyncInit = function() {
+
+    FB.init({
+      appId      : '279638825578526',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+
+FB.login(function(){
+
+
+ FB.api('/me/feed', 'post', {message: post_fb});
+}, {scope: 'publish_actions'});
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<p> Current temperature is:
+<label id="header"></label>
+</p>
+<p> This application is going to post the current temperature of the Toronto City Canada on my wall. </p>
+<p> <strong> The temperature is extracted from an external api in XML format. </strong></p>
+
+
+
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+</body>
+</html>
+
+
